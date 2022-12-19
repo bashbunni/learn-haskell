@@ -36,13 +36,51 @@ e.g.
 - `length [5, 4, 3, 2, 1]` => 5
 - `null [1, 2, 3]` => False || `null []` => True
 - `reverse [5, 4, 3, 2, 1]` => [1, 2, 3, 4, 5]
+- `maximum [5, 4, 3, 2, 1]` => 5
+- `minimum [5, 4, 3, 2, 1]` => 1
+- `sum [5, 4, 3, 2, 1]` => 15
+- `product [6, 2, 1, 2]` => 24
+- `elem 4 [3, 4, 5, 6]` => True (check if elem is in array)
+- `10 \`elem\` [3, 4, 5, 6]` => False
+
 ##### take
 takes a number and a list. It extracts n number of elements from the beginning of the list.
 - `take 3 [5, 4, 3, 2, 1]` => [5, 4, 3]
 - `take 1 [3, 9, 3]` => [3]
 - `take 5 [1, 2]` => [1, 2]
 - `take 5 [1, 2]` => [1, 2]
+
+##### drop
+drops n number of elements from the beginning of the list 
+- `drop 3 [5, 4, 3, 2, 1]` => [2, 1]
+- `drop 0 [3, 9, 1]` => [3, 9, 1]
+- `drop 100 [3, 9, 1]` => []
+
+##### Empty Lists Errors
 ```haskell
 ghci> head []  
 *** Exception: Prelude.head: empty list  
 ```
+
+##### Texas Ranges
+`ghci > [1..20]` => returns an array of all the values from 1 to 20, inclusive
+`ghci > [2,4..20]` => [2, 4, 6, 8, 10, 12, 14, 16, 18, 20] - you can specify a step
+- note: watch out when using floats. They are not completely precise by definition so their use in ranges can lead to weird outputs. *Not recommended*
+    e.g. 
+```bash
+ghci> [0.1, 0.3 .. 1]  
+[0.1,0.3,0.5,0.7,0.8999999999999999,1.0999999999999999]
+```
+
+- *cycle* `ghci > take 10 (cycle [1,2,3])` -> [1, 2, 3, 1, 2, 3, 1, 2, 3, 1]
+    - takes a list and cycles it to an infinite list. You have to slice it to make it stop at a given point
+- `take 10 (repeat 5)` -> [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+    - takes an element and produces an infinite list of just that element.
+
+## Logical operators
+
+!= is actually /= in Haskell
+|| -> or, && -> and, if condition then a else b
+
+## Piq Tips
+`ghci > leapYear _` -> get information about what parameters are expected

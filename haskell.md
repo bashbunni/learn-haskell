@@ -84,3 +84,6 @@ ghci> [0.1, 0.3 .. 1]
 
 ## Piq Tips
 `ghci > leapYear _` -> get information about what parameters are expected
+`ghci > :t leapYear` -> get type information about a function
+- we like to declare types first, then implement, for readibility, maintainability
+- if you don't know the implementation, you can define the types then just leave the implementation as `undefined` and the compiler will be happy to ignore it. so like `leapYear x = undefined`

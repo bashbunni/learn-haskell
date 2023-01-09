@@ -2,6 +2,10 @@
 
 ## Basics
 
+load package with ghci
+`ghci`
+`:l packagename`
+
 ### Functions
 
 Everything is a function. `*` is a function that takes two numbers and multiplies them. 
@@ -18,6 +22,15 @@ Everything is a function. `*` is a function that takes two numbers and multiplie
 - functions can't start with uppercase letters
 
 ### Lists
+
+#### String Lists
+
+```haskell
+jokes :: [String]
+jokes = ["when yo momma wore yellow, they yelled 'taxi'"]
+```
+
+#### Numeric Lists
 
 e.g.
 `let lostNums = [2, 4, 6, 8]`
@@ -87,3 +100,55 @@ ghci> [0.1, 0.3 .. 1]
 `ghci > :t leapYear` -> get type information about a function
 - we like to declare types first, then implement, for readibility, maintainability
 - if you don't know the implementation, you can define the types then just leave the implementation as `undefined` and the compiler will be happy to ignore it. so like `leapYear x = undefined`
+
+## Types
+polymorphic functions - functions with type variables (similar to generics in other languages)
+e.g. 
+```
+ghci> :t head  
+head :: [a] -> a  
+```
+
+typeclasses - interfaces, but better
+```
+ghci> :t (==)  
+(==) :: (Eq a) => a -> a -> Bool  
+```
+- all operators are functions, the above checks the type of the equality operator function
+
+#### enums
+
+enum members are sequentially ordered types; used in list ranges
+
+#### Bounded
+bounded members have an upper and lower bound
+
+#### Nums
+num is a numeric typeclass, so whole numbers are "polymorphic constants" TODO
+- includes all numbers
+
+`Integral` - a numeric typeclass that includes only integral/whole numbers (Int, Integer)
+
+## Pattern Matching
+
+non-exhaustive pattern; means we need to always include a catch-all pattern when making patterns
+
+## Typeclass
+*type constructor* - takes types as parameters to produce new types
+
+`data Maybe a = Nothing | Just a  `
+
+## Functors, Applicative Functors, and Monoids
+
+### Functor Typeclass
+don't forget typeclass == fancy interface
+- functor - things that can be mapped over
+```haskell
+class Functor f where
+    fmap :: (a -> b) -> f a -> f b
+```
+
+` (==) :: (Eq a) => a -> a -> Bool` -> a is a concrete type
+
+
+## Monads

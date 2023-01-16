@@ -140,6 +140,24 @@ non-exhaustive pattern; means we need to always include a catch-all pattern when
 
 ## Functors, Applicative Functors, and Monoids
 
+### Typeclasses
+
+- type names need to be capitalized
+- define a new data type
+```Haskell
+data Bool = False | True  
+```
+data type = value constructors (False or True ^)
+`data Shape = Circle Float Float Float | Rectangle Float Float Float Float` 
+Circle constructor with 3 params
+
+
+`data Shape = Circle Float Float Float | Rectangle Float Float deriving (Show)` -> make the data declaration part of the Show typeclass
+
+Currying - `map (Circle 10 20) [4, 5, 6, 6]` -> creates new array of Circles with 4, 5, 6, 6 as the last argument for each of the new shapes (len array is 4)
+
+> Not exporting the value constructors of a data types makes them more abstract in such a way that we hide their implementation. Also, whoever uses our module can't pattern match against the value constructors.
+
 ### Functor Typeclass
 don't forget typeclass == fancy interface
 - functor - things that can be mapped over
@@ -150,5 +168,8 @@ class Functor f where
 
 ` (==) :: (Eq a) => a -> a -> Bool` -> a is a concrete type
 
+### Maybe
+- not a concrete type
+- a type constructor that takes one parameter to produce a concrete type
 
 ## Monads

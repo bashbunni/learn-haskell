@@ -17,8 +17,5 @@ factorial :: (Integral a) => a -> a
 factorial 0 = 1
 factorial n = n * factorial (n - 1)
 
-getRandomJoke :: [String] -> String
-getRandomJoke = jokes
-
 jokes :: [String]
 jokes = ["when yo momma wore yellow, they yelled 'taxi'", "yoo momma said are you even listening, weird way to start a convo", "Yo momma's so fat and old when God said, 'Let there be light,' he asked your mother to move out of the way.", "yo mama so stupid it took her a hour to cook minute rice", "Yo momma is so fat, I took a picture of her last Christmas and it's still printing.", "yo mama so fat, she goes over 80 char limit", "yo mama so fat she has 2 ZIP codes"]

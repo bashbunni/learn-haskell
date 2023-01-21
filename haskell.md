@@ -95,12 +95,6 @@ ghci> [0.1, 0.3 .. 1]
 != is actually /= in Haskell
 || -> or, && -> and, if condition then a else b
 
-## Piq Tips
-`ghci > leapYear _` -> get information about what parameters are expected
-`ghci > :t leapYear` -> get type information about a function
-- we like to declare types first, then implement, for readibility, maintainability
-- if you don't know the implementation, you can define the types then just leave the implementation as `undefined` and the compiler will be happy to ignore it. so like `leapYear x = undefined`
-
 ## Types
 polymorphic functions - functions with type variables (similar to generics in other languages)
 e.g. 
@@ -168,8 +162,47 @@ class Functor f where
 
 ` (==) :: (Eq a) => a -> a -> Bool` -> a is a concrete type
 
-### Maybe
-- not a concrete type
+### Record Syntax
+`data Car = Car {company :: String, model :: String, year :: Int} deriving (Show)`
+```Haskell
+data Car = Car { company :: String
+    , model :: String
+    , year :: Int
+    } deriving (Show)
+```
+which is the same as
+`data Car = Car String String Int deriving (Show)`
+
+### Type Parameters/Maybe
+- not a concrete type - polymorphic
 - a type constructor that takes one parameter to produce a concrete type
 
+```haskell
+data Person a b c = Person
+  { username :: a,
+    color :: b,
+    editor :: c
+  }
+```
+you might write a type constructor with type parameters if our data type will work regardless of the type of the value that it holds. 
+
+`'a'` == type `Maybe Char`
+`[Int]` is ok, but you can't have `[]`
+
 ## Monads
+
+## Chat Tips
+> Derek Banas' tutorials are really good. He does an hour of going through a language with a set of steps which make it like a rosetta stone of programming languages. So in an hour you just get bombarded with info on on your way to learning the language. It would be worth just looking at his Haskell tutorial (usually they are all just an hour)
+
+## Piq Tips
+`ghci > leapYear _` -> get information about what parameters are expected
+`ghci > :t leapYear` -> get type of a function
+- we like to declare types first, then implement, for readibility, maintainability
+- if you don't know the implementation, you can define the types then just leave the implementation as `undefined` and the compiler will be happy to ignore it. so like `leapYear x = undefined`
+
+## Phaazon Tips
+- `ghci > :i leapYear` -> get information of a type
+
+# Questions
+> Still, here's a quick refresher: Functors are things that can be mapped over, like lists, Maybes, trees, and such. In Haskell, they're described by the typeclass Functor, which has only one typeclass method, namely fmap, which has a type of fmap :: (a -> b) -> f a -> f b. It says: give me a function that takes an a and returns a b and a box with an a (or several of them) inside it and I'll give you a box with a b (or several of them) inside it. It kind of applies the function to the element inside the box.
+- I kind of get it because it's saying that to be mappable (!iterable bc order doesn't matter) means to process one thing at a time. What's confusing me right now is `f a` because I *think* it's saying `f a` is the parameter... Which makes sense because everything is a function... So it's basically saying it can be any single thing (any single function that takes a single parameter)
